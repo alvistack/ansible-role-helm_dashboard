@@ -1,4 +1,4 @@
-# Ansible Role for Dashboard on Kubernetes
+# Ansible Role for Dashboard with Helm
 
 <a href="https://alvistack.com" title="AlviStack" target="_blank"><img src="/alvistack.svg" height="75" alt="AlviStack"></a>
 
@@ -7,7 +7,7 @@
 [![GitHub license](https://img.shields.io/github/license/alvistack/ansible-role-kube_dashboard.svg)](https://github.com/alvistack/ansible-role-kube_dashboard/blob/master/LICENSE)
 [![Ansible Role](https://img.shields.io/badge/galaxy-alvistack.kube_dashboard-blue.svg)](https://galaxy.ansible.com/alvistack/kube_dashboard)
 
-Ansible Role for Dashboard on Kubernetes Installation.
+Ansible Role for Dashboard with Helm.
 
 ## Requirements
 
