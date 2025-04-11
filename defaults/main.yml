@@ -28,8 +28,10 @@ helm_dashboard_helm_release_values:
     ingress:
       enabled: true
       hosts:
-        - localhost
+        - "{{ hostvars[groups['kube_master'][0]].ansible_hostname }}"
       useDefaultIngressClass: true
+  kong:
+    enabled: true
   cert-manager:
     enabled: false
   nginx:

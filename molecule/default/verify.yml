@@ -36,3 +36,16 @@
       changed_when: result is not succeeded
       until: result is succeeded
       retries: 60
+
+    - name: curl -skL
+      ansible.builtin.shell:
+        cmd: |
+          set -euxo pipefail
+          curl -skL https://{{ hostvars[groups['kube_master'][0]].ansible_hostname }}
+      args:
+        executable: /bin/bash
+      when: inventory_hostname == groups['kube_master'][0]
+      register: result
+      changed_when: result is not succeeded
+      until: result is succeeded
+      retries: 60
