@@ -1,6 +1,10 @@
-# Ansible Role for Dashboard on Kubernetes
+# Ansible Role for Dashboard with Helm
 
 ## 11.5.0 - TBC
+
+- Support Ubuntu 25.04
+- Rename prefix with `helm_`
+- Simplify with Helm
 
 ## 11.4.0 - 2025-03-31
 

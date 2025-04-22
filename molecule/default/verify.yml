@@ -31,7 +31,20 @@
           kubectl get pod --all-namespaces | egrep -e 'kubernetes-dashboard\s+kubernetes-dashboard-\S+\s+[0-9]+\/[0-9]+\s+Running'
       args:
         executable: /bin/bash
-      when: inventory_hostname == ansible_play_hosts[0]
+      when: inventory_hostname == groups['kube_master'][0]
+      register: result
+      changed_when: result is not succeeded
+      until: result is succeeded
+      retries: 60
+
+    - name: curl -skL
+      ansible.builtin.shell:
+        cmd: |
+          set -euxo pipefail
+          curl -skL https://{{ hostvars[groups['kube_master'][0]].ansible_hostname }}
+      args:
+        executable: /bin/bash
+      when: inventory_hostname == groups['kube_master'][0]
       register: result
       changed_when: result is not succeeded
       until: result is succeeded

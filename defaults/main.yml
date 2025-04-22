@@ -14,17 +14,25 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Deployment service type (`ClusterIP`, `NodePort`, `LoadBalancer`, or `ExternalName`).
-kube_dashboard_service_type: ClusterIP
+# Release name to manage.
+helm_dashboard_helm_release_name: kubernetes-dashboard
 
-# `spec.externalName` for `ExternalName`.
-kube_dashboard_external_name:
-# externalTrafficPolicy (`None`, `Local` or `Cluster`).
-kube_dashboard_external_traffic_policy:
-# Deployment service type (`ClusterIP`, `NodePort`, `LoadBalancer`, or `ExternalName`).
-kube_dashboard_metrics_scraper_service_type: ClusterIP
+# Kubernetes namespace where the chart should be installed.
+helm_dashboard_helm_release_namespace: kubernetes-dashboard
 
-# `spec.externalName` for `ExternalName`.
-kube_dashboard_metrics_scraper_external_name:
-# externalTrafficPolicy (`None`, `Local` or `Cluster`).
-kube_dashboard_metrics_scraper_external_traffic_policy:
+# Value to pass to chart.
+helm_dashboard_helm_release_values:
+  app:
+    image:
+      pullPolicy: IfNotPresent
+    ingress:
+      enabled: true
+      hosts:
+        - "{{ hostvars[groups['kube_master'][0]].ansible_hostname }}"
+      useDefaultIngressClass: true
+  kong:
+    enabled: true
+  cert-manager:
+    enabled: false
+  nginx:
+    enabled: false
