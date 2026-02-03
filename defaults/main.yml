@@ -28,7 +28,7 @@ helm_dashboard_helm_release_values:
     ingress:
       enabled: true
       hosts:
-        - "{{ hostvars[groups['kube_master'][0]].ansible_hostname }}"
+        - "{{ hostvars[groups['kube_master'][0]].ansible_facts['default_ipv4'].address] }}"
       useDefaultIngressClass: true
   kong:
     enabled: true
